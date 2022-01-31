@@ -7,61 +7,65 @@ import SmallCard from './SmallCard';
 /* <!-- Movies in DB --> */
 
 /* <!-- Total awards --> */
-function ContentRowMovies(){
+function Listados(){
     //ENDPOINT CANTIDAD TOTAL USUARIOS
-    const [users, setUsers] = useState([]);
-        useEffect(()=>{
-            axios.get('http://localhost:5000/api/users/list')
-            .then(({data}) => { 
-                console.log(data);
-                setUsers(data.length);
+    const [usersList, setUsersList] = useState([])
+      useEffect(()=>{
+          axios.get('http://localhost:5000/api/users/list')
+          .then(({data}) => { 
+              console.log(data);
+              setUsersList(JSON.stringify(data));
+              //console.log('usersList', usersList);
             })
-            .catch(e=>console.log(e))
-        },[]);
+          .catch(e=>console.log(e))
+      },[])
     //ENDPOINT CANTIDAD TOTAL PRODUCTOS
     const [products, setProducts] = useState([])
       useEffect(()=>{
-          axios.get('http://localhost:5000/api/products/list')
+          axios.get('http://localhost:5000/api/products')
           .then(({data}) => { 
               console.log(data);
-              setProducts(data.length);
+              setProducts(JSON.stringify(data));
+              //setProducts(data.length)
+              //console.log('products', products);
             })
           .catch(e=>console.log(e))
       },[]);
     //ENDPOINT CANTIDAD TOTAL CATEGORIAS
-    const [categories, setCategories] = useState([])
+    const [categoriesList, setCategoriesList] = useState([])
         useEffect(()=>{
             axios.get('http://localhost:5000/api/categorieslist')
             .then(({data}) => { 
                 console.log(data);
-                //setCategories(JSON.stringify(data));
-                setCategories(data.length);
+                setCategoriesList(JSON.stringify(data));
+                //setCategoriesList(data.length);
                 //console.log('users', users);
             })
             .catch(e=>console.log(e))
-        },[]);
-      
+        },[])
+     
+    
 let moviesInDB = {
-        title: 'TOTAL DE USUARIOS',
+        title: 'LISTADO DE USUARIOS',
         color: 'primary', 
-        cuantity: users,
-        icon:'fa-user-check' 
+        cuantity: usersList,
+        icon: 'fa-clipboard-list'
     };
 
 let totalAwards = {
-    title:'TOTAL DE PRODUCTOS', 
+    title:'LISTADO DE PRODUCTOS', 
     color:'success', 
     cuantity: products,
-    icon:'fa-clipboard-list'
+    icon:'fa-award'
 };
 
 /* <!-- Actors quantity --> */
 
 let actorsQuantity = {
-    title:'TOTAL DE CATEGORIAS' ,
+    title:'LISTADO DE CATEGORIAS' ,
     color:'warning',
-    cuantity:categories,
-    icon:'fa-award'
+    cuantity:categoriesList,
+    icon:'fa-user-check'
 };
 
 
@@ -79,4 +83,4 @@ let cartProps = [moviesInDB, totalAwards, actorsQuantity];
         </div>
     )
 }
-export default ContentRowMovies;
+export default Listados;
