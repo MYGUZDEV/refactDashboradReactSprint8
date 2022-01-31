@@ -11,7 +11,7 @@ function Listados(){
     //ENDPOINT CANTIDAD TOTAL USUARIOS
     const [usersList, setUsersList] = useState([])
       useEffect(()=>{
-          axios.get('http://localhost:5000/api/users/list')
+          axios.get('http://localhost:5000/api/users/')
           .then(({data}) => { 
               console.log(data);
               setUsersList(JSON.stringify(data));
@@ -49,14 +49,14 @@ let moviesInDB = {
         title: 'LISTADO DE USUARIOS',
         color: 'primary', 
         cuantity: usersList,
-        icon: 'fa-clipboard-list'
+        icon: 'fa-user-check'
     };
 
 let totalAwards = {
     title:'LISTADO DE PRODUCTOS', 
     color:'success', 
     cuantity: products,
-    icon:'fa-award'
+    icon:'fa-clipboard-list'
 };
 
 /* <!-- Actors quantity --> */
@@ -65,7 +65,7 @@ let actorsQuantity = {
     title:'LISTADO DE CATEGORIAS' ,
     color:'warning',
     cuantity:categoriesList,
-    icon:'fa-user-check'
+    icon:'fa-award'
 };
 
 

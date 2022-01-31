@@ -1,9 +1,9 @@
 import axios from 'axios';
 import React, {useEffect,useState} from 'react';
-import imagenFondo from '../assets/images/ps4-pro-console-02-en-26oct18.png';
+import imagenFondo from '../assets/images/048fc4548b2a11e7a2d3021976ae6e73.jpg';
 
-function GenresInDb() {
-  const [productLast, setProductsLast] = useState([])
+function LastProduct(){
+    const [productLast, setProductsLast] = useState([])
     useEffect(()=>{
         axios.get('http://localhost:5000/api/products/list')
         .then(({data}) => { 
@@ -19,7 +19,7 @@ function GenresInDb() {
         <div className="col-lg-6 mb-4">
             <div className="card shadow mb-4">
                 <div className="card-header py-3">
-                    <h5 className="m-0 font-weight-bold text-gray-800">ULTIMO PRODUCTO INGRESADO</h5>
+                    <h5 className="m-0 font-weight-bold text-gray-800">ULTIMO USUARIO REGISTRADO</h5>
                 </div>
                 <div className="card-body">
                     <div className="text-center">
@@ -33,4 +33,4 @@ function GenresInDb() {
     )
 }
 
-export default GenresInDb;
+export default LastProduct;
